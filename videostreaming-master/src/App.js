@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './App.css'
-import {
-    Button,
-} from '@mui/material'
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { Button } from '@mui/material'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
-import MovieCard from './components/MovieCard';
-import SeriesCard from './components/SeriesCard';
-
-import SeriesCard from './components/SeriesCard'
 import MovieCard from './components/MovieCard'
+import SeriesCard from './components/SeriesCard'
 
 function App() {
     const settings = {
@@ -51,8 +46,8 @@ function App() {
     }
 
     const [country, setCountry] = useState('')
-    const [MovieList, setMovieList] = useState([])
-    const [SeriesList, setSeriesList] = useState([])
+    const [movieList, setMovieList] = useState([])
+    const [seriesList, setSeriesList] = useState([])
 
     const handleCountryClick = (country) => {
         setCountry(country)
@@ -127,8 +122,8 @@ function App() {
 
             {country !== '' && (
                 <Slider {...settings}>
-                    {MovieList.data?.length > 0 &&
-                        MovieList.data.map((val) => {
+                    {movieList.data?.length > 0 &&
+                        movieList.data.map((val) => {
                             return <MovieCard movie={val} />
                         })}
                 </Slider>
