@@ -18,21 +18,21 @@ const CardInfo = styled(CardContent)(({ theme }) => ({
     },
 }))
 
-const MovieCard = ({ movie }) => {
+const SeriesCard = ({ series }) => {
     return (
         <Card sx={{ maxWidth: 250, position: 'relative' }}>
             <Box sx={{ position: 'relative' }}>
                 <CardMedia
                     component="img"
                     height="350"
-                    image={movie.image}
-                    alt={movie.title}
+                    image={series.image}
+                    alt={series.name}
                 />
             </Box>
 
             <CardInfo>
                 <Typography variant="h6" gutterBottom component="div">
-                    {movie.title}
+                    {series.name}
                 </Typography>
 
                 <Typography
@@ -41,7 +41,7 @@ const MovieCard = ({ movie }) => {
                     gutterBottom
                     component="div"
                 >
-                    {movie.release_date}
+                    {series.release_date}
                 </Typography>
 
                 <Typography mb={0}>
@@ -50,8 +50,8 @@ const MovieCard = ({ movie }) => {
                         count={10}
                         isHalf={true}
                         Rating
-                        rate={movie.rating}
-                        value={movie.rating}
+                        rate={series.rating}
+                        value={series.rating}
                         edit={0}
                         activeColor={'#ffd700'}
                     />
@@ -61,12 +61,12 @@ const MovieCard = ({ movie }) => {
     )
 }
 
-MovieCard.propTypes = {
-    movie: PropTypes.shape({
+SeriesCard.propTypes = {
+    series: PropTypes.shape({
         image: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         releaseDate: PropTypes.string,
     }).isRequired,
 }
 
-export default MovieCard
+export default SeriesCard
