@@ -33,7 +33,9 @@
 }
 
 .buttons {
-    margin: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .finland-button {
@@ -66,14 +68,14 @@
 
 * {
     box-sizing: border-box;
-  }
-  :root {
-
+}
+:root {
     --text-color: hsl(0, 0%, 100%);
-  }
-  body {
+}
+body {
     margin: 0;
   }
+  
   .wrapper {
     padding: 0.5em 0.6em;
     display: grid;
@@ -81,36 +83,33 @@
     justify-content: left;
     background-color: var(--background-color);
     max-height: 10vh;
-    font-family: "Oswald", sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-size: clamp(1rem, 1rem + 15vw, 5rem);
     font-weight: 700;
     text-transform: uppercase;
     color: var(--text-color);
-  }
-  
-  .wrapper > div {
+}
+
+.wrapper > div {
     grid-area: 1/1/-1/-1;
-  }
-  .top {
+}
+.top {
     clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
-  }
-  .bottom {
+}
+.bottom {
     clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
     color: transparent;
-    background: -webkit-linear-gradient(177deg, black 53%, var(--text-color) 65%);
+    background: -webkit-linear-gradient(
+        177deg,
+        black 53%,
+        var(--text-color) 65%
+    );
     background: linear-gradient(177deg, black 53%, var(--text-color) 65%);
     background-clip: text;
     -webkit-background-clip: text;
     transform: translateX(-0.02em);
-  }
-
+}
 
 .slick-slide > div {
     margin: 0 50px;
 }
-
-
-
-
-
-

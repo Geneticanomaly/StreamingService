@@ -11,10 +11,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import MovieCard from './components/MovieCard';
 import SeriesCard from './components/SeriesCard';
 
+import SeriesCard from './components/SeriesCard'
+import MovieCard from './components/MovieCard'
 
 function App() {
-
-
     const settings = {
         dots: true,
         infinite: true,
@@ -23,32 +23,32 @@ function App() {
         slidesToScroll: 4,
         initialSlide: 0,
         responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              initialSlide: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      };
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    }
 
     const [country, setCountry] = useState('')
     const [MovieList, setMovieList] = useState([])
@@ -58,29 +58,24 @@ function App() {
         setCountry(country)
 
         setMovieList([])
+        setSeriesList([])
         Axios.get('http://localhost:3001/api/get/' + country + '/movies').then(
             (response) => {
                 setMovieList(response)
             }
         )
-        console.log(MovieList)
-
-        setSeriesList([])
         Axios.get('http://localhost:3001/api/get/' + country + '/series').then(
             (response) => {
                 setSeriesList(response)
             }
         )
-        console.log(SeriesList)
-
     }
 
-    const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = React.useState(false)
 
     const handleBackClick = () => {
         setCountry('')
     }
-
 
     return (
         <div className="App">
@@ -98,26 +93,35 @@ function App() {
                 <h1 class="top-bar-title">RedBox</h1>
             </div>
 
-            <section  class="wrapper">
+            <section class="wrapper">
                 {visible && <div class="top">Movies</div>}
-                {visible && <div class="bottom" aria-hidden="true">Movies</div>}
+                {visible && (
+                    <div class="bottom" aria-hidden="true">
+                        Movies
+                    </div>
+                )}
             </section>
-            
+
             {country === '' && (
                 <div className="buttons">
                     <Button
                         className="finland-button"
-                        onClick={() => setVisible(true) || handleCountryClick('finland')}  
+                        onClick={() =>
+                            setVisible(true) || handleCountryClick('finland')
+                        }
                     ></Button>
                     <Button
                         className="spain-button"
-                        onClick={() => setVisible(true) || handleCountryClick('spain')}
+                        onClick={() =>
+                            setVisible(true) || handleCountryClick('spain')
+                        }
                     ></Button>
                     <Button
                         className="usa-button"
-                        onClick={() => setVisible(true) || handleCountryClick('usa')}
+                        onClick={() =>
+                            setVisible(true) || handleCountryClick('usa')
+                        }
                     ></Button>
-
                 </div>
             )}
 
@@ -125,29 +129,27 @@ function App() {
                 <Slider {...settings}>
                     {MovieList.data?.length > 0 &&
                         MovieList.data.map((val) => {
-                            return (
-                                <MovieCard movie={val}/>
-                            )
+                            return <MovieCard movie={val} />
                         })}
                 </Slider>
             )}
 
-            <section  class="wrapper">
+            <section class="wrapper">
                 {visible && <div class="top">Series</div>}
-                {visible && <div class="bottom" aria-hidden="true">Series</div>}
+                {visible && (
+                    <div class="bottom" aria-hidden="true">
+                        Series
+                    </div>
+                )}
             </section>
-
             {country !== '' && (
                 <Slider {...settings}>
-                    {SeriesList.data?.length > 0 &&
-                        SeriesList.data.map((val) => {
-                            return (
-                                <SeriesCard series={val}/>
-                            )
+                    {seriesList.data?.length > 0 &&
+                        seriesList.data.map((val) => {
+                            return <SeriesCard series={val} />
                         })}
                 </Slider>
             )}
-
         </div>
     )
 }
