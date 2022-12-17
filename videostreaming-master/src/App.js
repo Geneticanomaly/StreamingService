@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import MovieCard from './components/MovieCard';
+import SeriesCard from './components/SeriesCard';
 
 
 function App() {
@@ -51,17 +52,26 @@ function App() {
 
     const [country, setCountry] = useState('')
     const [MovieList, setMovieList] = useState([])
+    const [SeriesList, setSeriesList] = useState([])
 
     const handleCountryClick = (country) => {
         setCountry(country)
 
         setMovieList([])
-        Axios.get('http://localhost:3001/api/get/' + country).then(
+        Axios.get('http://localhost:3001/api/get/' + country + '/movies').then(
             (response) => {
                 setMovieList(response)
             }
         )
         console.log(MovieList)
+
+        setSeriesList([])
+        Axios.get('http://localhost:3001/api/get/' + country + '/series').then(
+            (response) => {
+                setSeriesList(response)
+            }
+        )
+        console.log(SeriesList)
 
     }
 
@@ -85,7 +95,7 @@ function App() {
                         Back
                     </Button>
                 )}
-                <h1 class="top-bar-title">Streaming Service</h1>
+                <h1 class="top-bar-title">RedBox</h1>
             </div>
 
             <section  class="wrapper">
@@ -126,6 +136,17 @@ function App() {
                 {visible && <div class="top">Series</div>}
                 {visible && <div class="bottom" aria-hidden="true">Series</div>}
             </section>
+
+            {country !== '' && (
+                <Slider {...settings}>
+                    {SeriesList.data?.length > 0 &&
+                        SeriesList.data.map((val) => {
+                            return (
+                                <SeriesCard series={val}/>
+                            )
+                        })}
+                </Slider>
+            )}
 
         </div>
     )
