@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './App.css'
-import { Button, Box } from '@mui/material'
+import { Button } from '@mui/material'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
