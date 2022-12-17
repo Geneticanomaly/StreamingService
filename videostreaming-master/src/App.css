@@ -3,6 +3,7 @@
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
+    margin-bottom: 4rem;
 }
 
 .top-bar {
@@ -74,9 +75,9 @@
 }
 body {
     margin: 0;
-  }
-  
-  .wrapper {
+}
+
+.wrapper {
     padding: 0.5em 0.6em;
     display: grid;
     place-content: center;
